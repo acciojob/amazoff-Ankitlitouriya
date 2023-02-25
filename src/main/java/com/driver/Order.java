@@ -8,18 +8,17 @@ public class Order {
     public Order(String id, String deliveryTime) {
 
         // The deliveryTime has to converted from string to int and then stored in the attribute
-        this.id =id;
-        this.deliveryTime = toMins(deliveryTime);
         //deliveryTime  = HH*60 + MM
+        this.id = id;
+        Integer hour = Integer.valueOf(deliveryTime.substring(0, 2));
+        Integer minutes = Integer.valueOf(deliveryTime.substring(3));
+        this.deliveryTime = hour*60 + minutes;
     }
-    private int toMins(String deliverytime)
-    {
-       String[] hourMin = deliverytime.split(":");
-       int hour = Integer.parseInt(hourMin[0]);
-       int mins = Integer.parseInt(hourMin[1]);
-       int hoursInMins = hour*60;
-       return hoursInMins;
+
+    public Order() {
     }
+
+
 
     public String getId() {
         return id;
